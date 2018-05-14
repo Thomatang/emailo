@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require("./models/User");
+require('./models/Survey');
 require('./services/passport');
 
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 
 require("./routes/authRoutes")(app);// valid JS: when we require the authRoute file, it returns a function, we then immediately call that function with the app object 
 require("./routes/billingRoutes")(app);// same here as previous line of code
+require('./routes/surveyRoutes')(app);
 
 if(process.env.NODE_ENV === 'production'){ // environment variable setup by heroku
 // Express will serve up production assets
