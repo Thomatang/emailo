@@ -3,6 +3,7 @@ import _ from 'lodash';
 import React, { Component } from "react";
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
+import validateEmails from '../../utils/validateEmails'
 
 import SurveyField from './SurveyField';
 
@@ -42,13 +43,16 @@ class SurveyForm extends Component {
 
 function validate(values){
     const errors = {};
+
+    errors.emails = validateEmails(values.emails || "");
+    
     //forEach loop: for each field in the FIELDS, run arrow function
     _.each(FIELDS, ({name, noValueError})=> {
         if(!values[name]){
             errors[name] = noValueError;
         }
-    })
-      
+    });
+
     return errors;
 }
 
