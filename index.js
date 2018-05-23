@@ -9,7 +9,7 @@ require('./models/Survey');
 require('./services/passport');
 
 
-
+mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongoURI);
 
 const app = express(); // used to setup configuration that will listen to incoming requests and route them to different handlers
